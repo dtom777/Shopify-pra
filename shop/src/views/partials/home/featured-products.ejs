@@ -1,0 +1,9 @@
+<section class="section">
+    <div class="container container-px is-max-widescreen">
+        <div class="columns">
+            <% featuredProducts.map((product) => { %>
+                <%- include('./featured-product-item', {product}); %>
+            <% }) %>
+        </div>
+    </div>
+</section>

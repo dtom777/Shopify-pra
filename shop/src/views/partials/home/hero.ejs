@@ -1,0 +1,9 @@
+<% const {home, office} = heroImages; %>
+
+<section class="hero is-fullheight">
+    <sl-image-comparer class="hero-images-container">
+        <sl-icon slot="handle-icon" name="hand-index"></sl-icon>
+        <img slot="before" src="<%= home.url %>" alt="<%= home.alt %>>" class="hero-images">
+        <img slot="after" src="<%= office.url %>" alt="<%= office.alt %>" class="hero-images">
+    </sl-image-comparer>
+</section>

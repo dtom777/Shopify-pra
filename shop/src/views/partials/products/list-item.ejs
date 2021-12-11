@@ -1,0 +1,20 @@
+<div class="column is-6-tablet is-4-desktop">
+    <sl-card class="app-card">
+        <div slot="image" class="app-card-img">
+            <img src="<%= product.images[0].src %>" alt="<%= product.images[0].alt %>" class="card-image">
+        </div>
+
+        <strong class="is-size-5" class="is-block"><%= product.title %></strong>
+        <strong class="is-block">$<%= product.price %></strong>
+
+        <div class="is-flex mt-3">
+            <% product.tags.map(tag => { %>
+                <sl-tag size="medium" pill class="mr-2 is-capitalized"><%= tag %></sl-tag>
+            <% }) %>
+        </div>
+
+        <div slot="footer" class="app-card-footer" style="--padding: 0;">
+            <sl-button href="/products/<%= product.slug%>" pill>Details</sl-button>
+        </div>
+    </sl-card>
+</div>

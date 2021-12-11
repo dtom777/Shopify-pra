@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../partials/common/head'); %>
+    <%- include('../assets/styles'); %>
+    <%- include('../assets/scripts'); %>
+</head>
+
+<body class="body">
+    <%- include('../partials/common/header'); %>
+
+    <div class="<%= path !== 'home' ? 'content' : '' %>">
+        <%- body %>
+    </div>
+
+    <%- include('../partials/common/footer'); %>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<section class="section">
+    <div class="container container-px is-max-widescreen">
+        <div class="columns">
+            <div class="column is-6">
+                <div class="about-image">
+                    <img src="<%= about.image.url %>" alt="<%= about.image.alt %>">
+                </div>
+            </div>
+            <div class="column is-6">
+                <% about.content.map(paragraph => {%>
+                <div class="mb-5"><%= paragraph %></div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</section>

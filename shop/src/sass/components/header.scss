@@ -1,0 +1,12 @@
+.brand {
+  font-size: 32px;
+  font-family: 'Gochi Hand', cursive;
+
+  @include from($desktop) {
+    font-size: 38px;
+  }
+}
+
+.navbar-brand {
+  align-items: center !important;
+}

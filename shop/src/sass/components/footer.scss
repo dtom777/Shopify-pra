@@ -1,0 +1,25 @@
+.footer {
+  &-container {
+    position: relative;
+  }
+  &-copyright {
+    position: absolute;
+    left: 50%;
+    bottom: 1.5rem;
+    transform: translate(-50%, 0);
+  }
+}
+
+.sns {
+  cursor: pointer;
+  fill: currentColor;
+  &-twitter:hover {
+    color: #1da1f2;
+  }
+  &-facebook:hover {
+    color: #1877f2;
+  }
+  &-instagram:hover {
+    color: #f26939;
+  }
+}

@@ -1,0 +1,12 @@
+<sl-dropdown>
+    <sl-button slot="trigger" type="text" size="large" class="mr-2 mb-2 dark" caret>Category</sl-button>
+    <sl-menu>
+        <% Object.values(categories).map(category => { %>
+            <sl-menu-item dropdown>
+                <a href="/categories/<%= category.id %>" class="dropdown-button">
+                    <%= category.label %>
+                </a>
+            </sl-menu-item>
+        <% }) %>
+    </sl-menu>
+</sl-dropdown>

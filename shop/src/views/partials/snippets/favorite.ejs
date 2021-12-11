@@ -1,0 +1,8 @@
+<% if (user) { %>
+
+<button id="btn" class="noFavorite" type="submit"
+  onclick="toggleFavorite(<%= JSON.stringify(product) %>,<%= JSON.stringify(user) %>)">
+  <span>♥</span>
+</button>
+
+<% } %>

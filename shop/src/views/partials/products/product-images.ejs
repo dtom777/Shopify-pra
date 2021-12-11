@@ -1,0 +1,13 @@
+<div class="column is-6" >
+    <div class="product-image">
+        <img src="<%= product.images[0].src %>" alt="<%= product.images[0].alt %>">
+    </div>
+
+    <div class="is-hidden-mobile columns mt-5">
+        <% Array(5).fill(0).map(i => { %>
+            <div class="column is-2">
+                <sl-avatar shape="rounded" image="<%= product.images[0].src %>" class="product-thumbnail"></sl-avatar>
+            </div>
+        <% }) %>
+    </div>
+</div>

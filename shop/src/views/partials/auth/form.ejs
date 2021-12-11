@@ -1,0 +1,33 @@
+<section class="section pt-0">
+    <div class="container container-px is-max-desktop">
+        <sl-card class="app-card">
+            <form action="/auth/login" method="post" id="form">
+                <div class="p-5">
+                    <% if (error) { %>
+                        <div class="notification is-danger is-light">
+                            <%= error %>
+                        </div>
+                    <% } %>
+
+                    <div class="field">
+                        <label for="name-input">Name</label>
+                        <div class="control">
+                            <input type="text" name="name" placeholder="Email" id="name-input" class="input" required>
+                        </div>
+                    </div>
+
+                    <div class="field mt-5">
+                        <label for="password-input">Password</label>
+                        <div class="control">
+                            <input type="password" name="password" placeholder="Password" id="password-input" class="input" required>
+                        </div>
+                    </div>
+
+                    <div class="is-flex is-justify-content-center mt-6">
+                        <button class="button" type="submit"><%= title %></button>
+                    </div>
+                </div>
+            </form>
+        </sl-card>
+    </div>
+</section>

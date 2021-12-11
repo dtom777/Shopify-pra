@@ -1,0 +1,15 @@
+<% const curPath = path.replace('home', ''); %>
+<% const basePath = `${curPath}?${filter ? 'filter=' + filter + '&' : ''}` %>
+<% const totalPages = Math.ceil(totalCount / perPage) %>
+
+<nav class="pagination is-centered mt-4" role="navigation" aria-label="pagination">
+    <ul class="pagination-list">
+        <% Array(totalPages).fill(0).map((_, index) => { %>
+            <li class="mt-0">
+                <a href="<%= `${basePath}page=${index + 1}` %>" class="pagination-link <%= page === index + 1 ? 'is-current' : '' %>">
+                    <%= index + 1 %>
+                </a>
+            </li>
+        <% }) %>
+    </ul>
+</nav>

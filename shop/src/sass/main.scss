@@ -1,0 +1,22 @@
+@charset "utf-8";
+
+$bg-color: #efefef;
+$pagination-base: #00c4a7;
+$navbar-background-color: $bg-color;
+$footer-background-color: $bg-color;
+$pagination-current-background-color: $pagination-base;
+$pagination-current-border-color: $pagination-base;
+$link: #4a4a4a;
+
+@import '../../../node_modules/bulma/bulma.sass';
+// @import '../../node_modules/bulma/bulma.sass';
+
+@import 'utilities/variables';
+@import 'common';
+
+@import 'pages/home';
+@import 'pages/products';
+
+@import 'components/header';
+@import 'components/footer';
+@import 'components/card';

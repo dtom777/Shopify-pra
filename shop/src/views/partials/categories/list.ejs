@@ -1,0 +1,9 @@
+<section class="section">
+    <div class="container container-px is-max-widescreen">
+        <div class="columns is-flex-wrap-wrap">
+            <% Object.values(categories).map((category) => { %>
+                <%- include('./list-item', {category}); %>
+            <% }) %>
+        </div>
+    </div>
+</section>

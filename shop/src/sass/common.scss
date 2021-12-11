@@ -1,0 +1,96 @@
+.body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.content {
+  margin-top: 80px;
+  @include from($desktop) {
+    margin-top: 89px;
+  }
+}
+
+.container {
+  @include until($desktop) {
+    max-width: 90%;
+  }
+
+  &-px {
+    @include from($tablet) {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+    @include from($desktop) {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+    @include from($wide-screen) {
+    }
+  }
+}
+
+.page-title {
+  width: 100%;
+  box-shadow: var(--sl-shadow-large);
+  &-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & h2 {
+    margin-bottom: 0;
+  }
+}
+
+sl-button.drawer::part(base) {
+  color: var(--sl-color-gray-700);
+  justify-content: flex-start;
+  &:hover {
+    color: var(--sl-color-gray-500);
+  }
+}
+
+sl-button.dark::part(base) {
+  color: var(--sl-color-gray-700);
+  &:hover {
+    color: var(--sl-color-gray-500);
+  }
+}
+
+sl-menu-item::part(base) {
+  padding: 0;
+  &:hover {
+    color: var(--sl-color-nuetral-0);
+  }
+}
+
+sl-menu-item.dropdown::part(base) {
+  &:hover {
+    color: var(--sl-color-nuetral-0);
+  }
+}
+
+a.dropdown-button {
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0.75rem 2rem;
+  &:hover {
+    color: white;
+  }
+}
+
+.logout-button {
+  font-size: 1rem;
+  border: none;
+  background: transparent;
+  width: 100%;
+  padding: 0.5rem 2rem;
+  cursor: pointer;
+  &:hover {
+    color: white;
+  }
+}

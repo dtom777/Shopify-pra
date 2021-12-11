@@ -1,0 +1,28 @@
+<nav class="navbar p-2 is-fixed-top" role="navigation" aria-label="main navigation">
+    <div class="container is-max-widescreen">
+        <div class="navbar-brand">
+            <a class="navbar-item brand" href="/">
+                My Furniture Store
+            </a>
+            <%- include('../components/hamburger'); %>
+            <%- include('../components/nav-drawer'); %>
+        </div>
+
+        <div id="navbar" class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <sl-button type="text" size="large" href="/products" class="mr-2 mb-2 dark">Catalog</sl-button>
+                        <%- include('../components/nav-dropdown'); %>
+
+                        <% if (!user) { %>
+                            <sl-button type="text" size="large" href="/auth/login" class="mr-2 mb-2 dark">Log in</sl-button>
+                        <% } else { %>
+                            <%- include('../components/user-dropdown'); %>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

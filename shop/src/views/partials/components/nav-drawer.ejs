@@ -1,0 +1,36 @@
+<sl-drawer label="Navigation" class="nav-drawer has-text-weight-medium" style="--size: 300px">
+    <div class="is-flex is-flex-direction-column">
+        <% if (user) { %>
+            <div class="is-flex mb-4">
+                <sl-avatar alt="User avatar" style="--size: 2rem;"></sl-avatar>
+                <div class="ml-3"><%= user.name %></div>
+            </div>
+        <% } %>
+
+        <sl-button type="text" size="large" class="drawer" href="/">
+            <sl-icon slot="prefix" name="house-door"></sl-icon>
+            Home
+        </sl-button>
+        <sl-button type="text" size="large" class="drawer" href="/products">
+            <sl-icon slot="prefix" name="journals"></sl-icon>
+            Catalog
+        </sl-button>
+        <sl-button type="text" size="large" class="drawer" href="/categories">
+            <sl-icon slot="prefix" name="bookmarks"></sl-icon>
+            Category
+        </sl-button>
+        <% if (!user) { %>
+            <sl-button type="text" size="large" class="drawer" href="/auth/login">
+                <sl-icon slot="prefix" name="door-open"></sl-icon>
+                Log in
+            </sl-button>
+        <% } else { %>
+            <form action="/auth/logout" method="post" id="drawer-logout">
+                <sl-button type="text" size="large" class="drawer" id="drawer-logout-btn">
+                    <sl-icon slot="prefix" name="door-closed"></sl-icon>
+                    Log out
+                </sl-button>
+            </form>
+        <% } %>
+    </div>
+</sl-drawer>

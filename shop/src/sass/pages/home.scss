@@ -1,0 +1,18 @@
+.hero-images {
+  &-container {
+    width: 100vw;
+    height: 100vh;
+    & img {
+      display: block;
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+    }
+  }
+}
+
+.about {
+  &-image {
+    width: 100%;
+  }
+}

@@ -1,0 +1,35 @@
+<% const shoelaceBase = "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.61/dist" %>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title><%= title %></title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.61/dist/themes/light.css">
+<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/favorite.css">
+<script type="module" src="<%= shoelaceBase %>/shoelace.js">
+</script>
+
+<script>
+  window.Shopify = {
+    shop: 'my-furniture-store.myshopify.com',
+    theme: {
+      id: '5055',
+      name: 'Awesome',
+      role: 'main',
+    },
+    country: 'JP',
+    currency: {
+      active: 'JPY',
+      rate: '1.0',
+    },
+    locale: window.navigator.language,
+  };
+</script>
+<script type="module" src="/js/main.js" defer></script>
+<script src="/js/favorite.js" defer></script>

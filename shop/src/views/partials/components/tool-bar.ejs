@@ -1,0 +1,26 @@
+<% const curPath = path.replace('home', ''); %>
+
+<sl-card class="tool-bar mb-5" style="--padding: 4px 12px;">
+    <div class="is-flex is-justify-content-space-between is-align-content-center">
+        <div class="is-flex">
+            <sl-dropdown>
+                <sl-button slot="trigger" type="text" class="dark" caret>Filter</sl-button>
+                <sl-menu class="dropdown">
+                    <% tags.map(tag => { %>
+                        <sl-menu-item>
+                            <a href="<%= `${curPath}?filter=${tag}` %>"
+                               class="dropdown-button is-capitalized"><%= tag %></a>
+                        </sl-menu-item>
+                    <% }) %>
+                </sl-menu>
+            </sl-dropdown>
+
+            <% if (filter) { %>
+                <sl-button type="text" class="dark" href="<%= curPath %>">Reset</sl-button>
+            <% } %>
+        </div>
+
+        <div class="tool-bar-count my-auto mx-0 pr-3"><%= totalCount %> products</div>
+    </div>
+</sl-card>
+

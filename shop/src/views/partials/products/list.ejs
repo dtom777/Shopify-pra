@@ -1,0 +1,19 @@
+<section class="section">
+    <div class="container container-px is-max-widescreen">
+        <% if (products && products.length > 0) { %>
+            <%- include('../components/tool-bar'); %>
+
+            <div class="columns is-flex-wrap-wrap">
+                <% products.map((product) => { %>
+                    <%- include('./list-item', {product}); %>
+                <% }) %>
+            </div>
+
+            <%- include('../components/pagination'); %>
+        <% } else { %>
+            <div class="container container-px is-max-desktop">
+                <div class="has-text-centered has-text-weight-medium">There are no results that match your search.</div>
+            </div>
+        <% } %>
+    </div>
+</section>

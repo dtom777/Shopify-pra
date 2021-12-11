@@ -1,0 +1,45 @@
+<% const group = 'column is-4-desktop is-flex is-justify-content-center px-6 pt-4 pb-2'; %>
+<% const title = 'is-size-5 has-text-weight-bold has-text-centered-mobile mb-2'; %>
+
+<footer class="footer footer-container mt-6">
+    <div class="container is-max-widescreen">
+        <div class="columns">
+            <div class="<%= group %>">
+                <div>
+                    <div class="<%= title %>">Sitemap</div>
+                    <ul>
+                        <li class="py-1 ml-3-tablet">
+                            <a href="/products">All Products</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="<%= group %>">
+                <div>
+                    <div class="<%= title %>">Categories</div>
+                    <ul>
+                        <% Object.values(categories).map(category => { %>
+                            <li class="py-1 ml-3-tablet has-text-centered-mobile">
+                                <a href="/categories/<%= category.id %>"><%= category.label %></a>
+                            </li>
+                        <% }) %>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="<%= group %>">
+                <div>
+                    <div class="<%= title %>">Links</div>
+                    <div class="is-flex is-size-3 py-1 ml-5">
+                        <sl-icon name="twitter" class="mr-5 sns sns-twitter"></sl-icon>
+                        <sl-icon name="facebook" class="mr-5 sns sns-facebook"></sl-icon>
+                        <sl-icon name="instagram" class="mr-5 sns sns-instagram"></sl-icon>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-copyright is-size-7 has-text-grey has-text-centered">Copyright &copy; 2021 Hiroki Amada</div>
+</footer>

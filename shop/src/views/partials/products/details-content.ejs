@@ -1,0 +1,36 @@
+<section class="section">
+    <div class="container container-px is-max-widescreen">
+        <div class="columns">
+            <%- include('./product-images'); %>
+
+            <div class="column is-6 is-flex is-flex-direction-column is-justify-content-space-between">
+                <div>
+                    <div class="is-size-3 has-text-weight-bold"><%= product.title %></div>
+                    <%- include('../snippets/favorite.ejs'); %>
+                    <div class="is-size-5 has-text-weight-medium">$<%= product.price %></div>
+
+                    <div class="is-flex my-2">
+                        <% product.tags.map(tag => { %>
+                        <sl-tag size="medium" pill class="mr-2 is-capitalized"><%= tag %></sl-tag>
+                        <% }) %>
+                    </div>
+
+
+                    <div><%= product.description %></div>
+                </div>
+
+                <div class="is-flex mt-6">
+                    <sl-button type="default" class="is-uppercase product mx-2">
+                        <sl-icon slot="prefix" name="cart4" class="product"></sl-icon>
+                        Add To Cart
+                    </sl-button>
+
+                    <sl-button type="default" class="is-uppercase product product-buy mx-2">
+                        <sl-icon slot="prefix" name="handbag" class="product"></sl-icon>
+                        Buy it now
+                    </sl-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

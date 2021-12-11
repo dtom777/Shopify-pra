@@ -1,0 +1,13 @@
+<div class="column is-6-tablet is-4-desktop">
+    <sl-card class="app-card">
+        <div slot="image" class="app-card-img">
+            <img src="<%= category.image.url %>" alt="<%= category.image.alt %>" class="card-image">
+        </div>
+
+        <strong class="is-block is-size-5"><%= category.label %></strong>
+
+        <div slot="footer" class="app-card-footer">
+            <sl-button href="/categories/<%= category.id %>" pill>More</sl-button>
+        </div>
+    </sl-card>
+</div>

@@ -1,0 +1,12 @@
+<sl-dropdown>
+    <sl-button slot="trigger" type="text" size="large" class="mr-2 mb-2 dark" caret>
+        <span class="is-capitalized"><%= user.name %></span>
+    </sl-button>
+    <sl-menu>
+        <sl-menu-item class="logout">
+            <form action="/auth/logout" method="post">
+                <button type="submit" class="logout-button">Logout</button>
+            </form>
+        </sl-menu-item>
+    </sl-menu>
+</sl-dropdown>

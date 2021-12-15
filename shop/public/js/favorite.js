@@ -1,4 +1,4 @@
-const handle = async (product, user, event) => {
+const handleFavorite = async (product, user, event) => {
   const baseUrl = 'http://localhost:8080/favorite';
   const { shop } = window.Shopify;
   const productId = product.id;

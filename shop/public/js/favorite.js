@@ -1,49 +1,67 @@
-const { shop } = window.Shopify;
-
-const toggleFavorite = async (product, user) => {
+const handle = async (product, user, event) => {
+  const baseUrl = 'http://localhost:8080/favorite';
+  const { shop } = window.Shopify;
   const productId = product.id;
   const userId = user.id;
-  if (!userId) {
+
+  if (!productId || !userId) {
     return;
   }
-  const body = {
-    shop,
-    userId,
-    productId,
+
+  const favoriteElement = document.getElementById('fbl-favorite-btn');
+
+  // GET
+  const getFavorite = async () => {
+    const res = await fetch(
+      `${baseUrl}?shop=${shop}&productId=${productId}&userId=${userId}`
+    );
+    const { favorite } = await res.json();
+    if (favorite) {
+      favoriteElement.classList.add('fbl-favorite');
+      favoriteElement.classList.remove('fbl-no-favorite');
+    } else {
+      favoriteElement.classList.add('fbl-no-favorite');
+      favoriteElement.classList.remove('fbl-favorite');
+    }
   };
-  const favorite = await fetch(
-    `http://localhost:8080/favorite?shop=${shop}&productId=${productId}&userId=${userId}`
-  );
-  const { status } = favorite;
-  const element = document.getElementById('btn');
-  const { className } = element;
-  if (status === 200 && className === 'favorite') {
-    try {
-      await fetch('http://localhost:8080/favorite', {
-        method: 'DELETE',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      element.classList.add('noFavorite');
-      element.classList.remove('favorite');
-    } catch (err) {
-      console.log(err);
+
+  // POST/DELETE
+  const toggleFavorite = async () => {
+    const favoriteClassName = document.getElementsByClassName('fbl-favorite');
+    const body = {
+      shop,
+      userId,
+      productId,
+    };
+    if (!favoriteClassName.length) {
+      // POST
+      try {
+        await fetch(baseUrl, {
+          method: 'POST',
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        favoriteElement.classList.add('fbl-favorite');
+        favoriteElement.classList.remove('fbl-no-favorite');
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      // DELETE
+      try {
+        await fetch(baseUrl, {
+          method: 'DELETE',
+          body: JSON.stringify(body),
+          headers: { 'Content-Type': 'application/json' },
+        });
+        favoriteElement.classList.add('fbl-no-favorite');
+        favoriteElement.classList.remove('fbl-favorite');
+      } catch (err) {
+        console.log(err);
+      }
     }
-  } else if (status === 200 && className === 'noFavorite') {
-    // reloadの関係で見た目は非お気に入りだが、DBにdataはあるとき
-    element.classList.add('favorite');
-    element.classList.remove('noFavorite');
-  } else {
-    try {
-      await fetch('http://localhost:8080/favorite', {
-        method: 'POST',
-        body: JSON.stringify(body),
-        headers: { 'Content-Type': 'application/json' },
-      });
-      element.classList.add('favorite');
-      element.classList.remove('noFavorite');
-    } catch (err) {
-      console.log(err);
-    }
-  }
+  };
+
+  if (event === 'load') await getFavorite();
+  if (event === 'click') await toggleFavorite();
 };

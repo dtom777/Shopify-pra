@@ -34,7 +34,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use(express.static(path.resolve('shop/public')));
+app.use(express.static(path.resolve('public')));
 
 app.use('/', indexRouter);
 app.use('/products', productsRouter);

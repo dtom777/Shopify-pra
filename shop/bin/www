@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const app = require('../shop/src/app');
+const app = require('../src/app');
 const debug = require('debug')('favorites:server');
 const http = require('http');
 

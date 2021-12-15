@@ -1,4 +1,4 @@
-.favorite {
+.fbl-favorite {
   color: red;
   background-color: white;
   border: none;
@@ -6,7 +6,7 @@
   cursor: pointer;
 }
 
-.noFavorite {
+.fbl-no-favorite {
   color: gray;
   background-color: white;
   border: none;
@@ -14,6 +14,6 @@
   cursor: pointer;
 }
 
-#btn:hover {
+#fbl-favorite-btn:hover {
   opacity: 0.5;
 }

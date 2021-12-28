@@ -5,11 +5,12 @@
         </div>
 
         <strong class="is-size-5" class="is-block"><%= product.title %></strong>
+        <%- include('../snippets/favorite-list-item.ejs')  %>
         <strong class="is-block">$<%= product.price %></strong>
 
         <div class="is-flex mt-3">
             <% product.tags.map(tag => { %>
-                <sl-tag size="medium" pill class="mr-2 is-capitalized"><%= tag %></sl-tag>
+            <sl-tag size="medium" pill class="mr-2 is-capitalized"><%= tag %></sl-tag>
             <% }) %>
         </div>
 

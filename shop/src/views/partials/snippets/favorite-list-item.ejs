@@ -1,7 +1,5 @@
 <% if (user) { %>
 
-<!-- 後でproduct.id user.id -->
-
 <body onload="handleFavorites(<%= JSON.stringify(product) %>,<%= JSON.stringify(user) %>,'load')"
   onbeforeunload="handleFavorites(<%= JSON.stringify(product) %>,<%= JSON.stringify(user) %>, 'beforeunload')">
   <button id="<%= product.id %>" class="fbl-favorites" type="submit"

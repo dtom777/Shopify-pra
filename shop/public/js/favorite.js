@@ -71,40 +71,32 @@ const handleFavorites = async (product, user, event) => {
 
   // GET
   const getFavorites = async () => {
-    // shop,userIdで一致データを全部取得し、localStorageに保存
+    // shop,userIdで一致するお気に入りデータを全部取得し、localStorageに保存
     const res = await fetch(`${baseUrl}?shop=${shop}&userId=${userId}`);
     const { favorites } = await res.json();
-    localStorage.setItem('favoriteItems', JSON.stringify(favorites));
-    // localStorageに保管した後、重複を削除する
-    const favoriteArray = JSON.parse(localStorage.getItem('favoriteItems'));
-    const result = favoriteArray.filter(
-      (element, index, self) =>
-        self.findIndex(
-          e => e.productId === element.productId && e.userId === element.userId
-        ) === index
-    );
-    console.log('RESULT', result);
+    // localStorageの初期化
     localStorage.clear();
-    localStorage.setItem('favoriteItems', JSON.stringify(result));
+    if (favorites) {
+      localStorage.setItem('favoriteItems', JSON.stringify(favorites));
 
-    // favoritesのうちproductIdが画面上のproduct.idが一致するものはactiveを追加
-    result.map(
-      favorite =>
-        document.getElementById(favorite.productId) &&
-        document.getElementById(favorite.productId).classList.add('active')
-    );
+      // favoritesのうちproductIdが画面上のproduct.idが一致するものはactiveを追加
+      favorites.map(
+        favorite =>
+          document.getElementById(favorite.productId) &&
+          document.getElementById(favorite.productId).classList.add('active')
+      );
+    }
   };
 
-  // クリックしたプロダクトを一時的にlocalStorageに保存
-  const saveFavoritesAtLocal = async () => {
-    // ♥を赤にする
+  // クリックしたプロダクトを一時的にlocalStorageに追加
+  const addFavoriteAtLocal = async () => {
+    // クリックしたプロダクトを取得
     const favoriteElement = document.getElementById(productId);
-    favoriteElement.classList.add('active');
 
     const favoritesItems = JSON.parse(localStorage.getItem('favoriteItems'));
     console.log('登録情報', favoritesItems);
 
-    // localStorageにfavoriteItemsがある時
+    // localStorageにfavoriteItemsがすでにある時
     if (favoritesItems) {
       // 今回クリックしたお気に入り情報がすでにある時
       if (
@@ -115,7 +107,7 @@ const handleFavorites = async (product, user, event) => {
             element.userId === userId
         )
       ) {
-        console.log('すでにあるよ');
+        console.log('すでに登録されているよ');
         // お気に入りから削除
         const newFavoriteItems = favoritesItems.filter(
           element =>
@@ -131,31 +123,33 @@ const handleFavorites = async (product, user, event) => {
       } else {
         // 今回クリックしたお気に入り情報がまだない時
         console.log('まだ登録されてないよ');
+        // localStorageにお気に入りデータを追加
         favoritesItems.push({ shop, productId, userId });
         localStorage.setItem('favoriteItems', JSON.stringify(favoritesItems));
+        favoriteElement.classList.add('active');
         return;
       }
     } else {
-      // localStorageにfavoriteItemsがない時
+      // localStorageにfavoriteItemsがない時(新規登録)
       // 新規でお気に入り追加
       console.log('初めての追加だよ');
       let favoriteItems = [];
       favoriteItems.push({ shop, productId, userId });
       localStorage.setItem('favoriteItems', JSON.stringify(favoriteItems));
+      favoriteElement.classList.add('active');
     }
   };
 
-  // POST beforeunload時に実行
+  // POST  beforeunload時に実行
   const toggleFavorites = async () => {
+    // localStorageに保存しているデータを取得
     const body = localStorage.getItem('favoriteItems');
-    console.log('BODY', body);
     try {
-      await fetch(baseUrl, {
+      await fetch(`${baseUrl}?shop=${shop}&userId=${userId}`, {
         method: 'POST',
         body,
         headers: { 'Content-Type': 'application/json' },
       });
-      console.log('処理完了');
       localStorage.clear();
     } catch (err) {
       console.log(err);
@@ -163,6 +157,6 @@ const handleFavorites = async (product, user, event) => {
   };
 
   if (event === 'load') await getFavorites();
-  if (event === 'click') await saveFavoritesAtLocal();
+  if (event === 'click') await addFavoriteAtLocal();
   if (event === 'beforeunload') await toggleFavorites();
 };

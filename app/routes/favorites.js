@@ -10,7 +10,4 @@ router.get('/', favoritesController.getFavorites);
 // POST /favorites
 router.post('/', favoritesController.createFavorites);
 
-// DELETE /favorites
-router.delete('/', favoritesController.deleteFavorites);
-
 module.exports = router;

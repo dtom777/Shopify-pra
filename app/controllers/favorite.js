@@ -1,70 +1,65 @@
 const Favorite = require('../models/favorite');
 
 // GET
-exports.getFavorite = (req, res, next) => {
+exports.getFavorite = async (req, res, next) => {
   const { shop, userId, productId } = req.query;
-  Favorite.findOne({ shop, productId, userId })
-    .then((favorite) => {
-      if (!favorite) {
-        return res.status(200).json({
-          message: `User ${userId} has not favorited ${productId} yet.`,
-          favorite: null,
-        });
-      }
+
+  try {
+    const favorite = await Favorite.findOne({ shop, productId, userId });
+    if (favorite) {
       res.status(200).json({ message: 'Fetched favorite!', favorite });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
-    });
+    } else {
+      return res.status(200).json({
+        message: `User ${userId} has not favorite ${productId} yet.`,
+        favorite: null,
+      });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
 };
 
 // POST
-exports.createFavorite = (req, res, next) => {
+exports.createFavorite = async (req, res, next) => {
   const { shop, userId, productId } = req.body;
-  const favorite = new Favorite({
-    shop,
-    userId,
-    productId,
-  });
-  favorite
-    .save()
-    .then((result) => {
-      res.status(201).json({
-        message: 'Created favorite!',
-        favorite: result,
-      });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
+  try {
+    const favorite = new Favorite({
+      shop,
+      userId,
+      productId,
     });
+    await favorite.save();
+    res.status(201).json({
+      message: 'Created favorite!',
+      favorite,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
 };
 
 // DELETE
-exports.deleteFavorite = (req, res, next) => {
+exports.deleteFavorite = async (req, res, next) => {
   const { shop, userId, productId } = req.body;
-  Favorite.findOne({ shop, productId, userId })
-    .then((favorite) => {
-      if (!favorite) {
-        const error = new Error('Not find favorite.');
-        error.statusCode = 404;
-        throw error;
-      }
-      return Favorite.findOneAndDelete({ shop, productId, userId });
-    })
-    .then((result) => {
-      console.log('DELETE FAVORITE', result);
+  try {
+    const favorite = await Favorite.findOne({ shop, productId, userId });
+    if (favorite) {
+      const result = await Favorite.findOneAndDelete({
+        shop,
+        productId,
+        userId,
+      });
+      console.log('REMOVE-RESULT', result);
       res.status(200).json({ message: 'Deleted favorite.' });
-    })
-    .catch((err) => {
-      if (!err.statusCode) {
-        err.statusCode = 500;
-      }
-      next(err);
-    });
+    } else {
+      const error = new Error('Not find favorite.');
+      error.statusCode = 404;
+      throw error;
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).send();
+  }
 };

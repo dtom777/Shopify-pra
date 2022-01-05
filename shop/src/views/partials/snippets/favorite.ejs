@@ -1,8 +1,7 @@
 <% if (user) { %>
 
-
 <body onload="handleFavorite(<%= JSON.stringify(product) %>,<%= JSON.stringify(user) %>,'load')">
-  <button id="fbl-favorite-btn" class="fbl-favorite" type="submit"
+  <button id="<%= product.id %>" class="fbl-favorite" type="submit"
     onclick="handleFavorite(<%= JSON.stringify(product) %>,<%= JSON.stringify(user) %>,'click')">
     <span>♥</span>
   </button>

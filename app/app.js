@@ -3,7 +3,6 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const favoriteRoutes = require('./routes/favorite');
-const favoritesRoutes = require('./routes/favorites');
 
 const app = express();
 
@@ -20,7 +19,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/favorite', favoriteRoutes);
-app.use('/favorites', favoritesRoutes);
 
 mongoose
   .connect(process.env.MONGODB)
